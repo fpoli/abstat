@@ -11,6 +11,48 @@ Abstract Interpreter for the While Language.
 4. Run demo with `cat data/if.wl | make run`
 
 
+# Example
+
+Output of `cat data/if.wl | make run`:
+
+
+```
+=== Abstat ===
+x := 1;
+
+if x == 1 then (
+	y := x;
+	x := 4;
+) else (
+	z := x;
+	x := 6;
+)
+
+(*) Parsing...
+(*) Abstract interpretation...
+( ) Int domain:
+    x: Val 4
+    y: Val 1
+    z: Top
+( ) Sign domain:
+    x: Val Positive
+    y: Top
+    z: Top
+( ) Interval domain:
+    x: Interval (Val 4) (Val 4)
+    y: Interval (Val 1) (Val 1)
+    z: Interval MinusInf PlusInf
+( ) Congruence 2:
+    x: Val 0
+    y: Top
+    z: Top
+(*) Concrete interpretation...
+    x: 4
+    y: 1
+
+```
+
+
 ---
 
 Copyright (C) 2014, 2015 Federico Poli <federpoli@gmail.com>
