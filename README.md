@@ -2,16 +2,16 @@
 
 Abstract Interpreter for the While Language.
 
+[![Build Status](https://travis-ci.org/fpoli/abstat.svg?branch=master)](https://travis-ci.org/fpoli/abstat)
 
-# Quick start
+## Quick start
 
 1. Install the Haskell compiler `ghc` and the packet manager `cabal`
 2. Install dependencies using `cabal` (e.g. `cabal install --only-dependencies --enable-tests`)
 3. Run tests with `make test`
 4. Run demo with `cat data/if.wl | make run`
 
-
-# Example
+## Example
 
 Output of `cat data/if.wl | make run`:
 
@@ -52,8 +52,7 @@ if x == 1 then (
 
 ```
 
-
----
+## License
 
 Copyright (C) 2014, 2015 Federico Poli <federpoli@gmail.com>
 
