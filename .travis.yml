@@ -1,0 +1,15 @@
+language: haskell
+
+before_install:
+  - cabal update
+  - sudo apt-get update
+
+install:
+  - cabal install --only-dependencies --enable-tests
+  - sudo apt-get install -y hlint
+
+script:
+  - GHC_OPTS=-Werror make build
+  - make test
+  - make lint
+  - cat data/if.wl | make run
