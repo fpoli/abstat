@@ -66,17 +66,17 @@ instance AST AExpr where
     usedVars (Var var) = Set.singleton var
     usedVars (IntConst _) = Set.empty
     usedVars (AUnary _ a) = usedVars a
-    usedVars (ABinary _ a b) = Set.union (usedVars a) (usedVars b)
+    usedVars (ABinary _ a b) =  usedVars a `Set.union` usedVars b
 
 instance AST BExpr where
     usedVars (BoolConst _) = Set.empty
     usedVars (BUnary _ a) = usedVars a
-    usedVars (BBinary _ a b) = Set.union (usedVars a) (usedVars b)
-    usedVars (RBinary _ a b) = Set.union (usedVars a) (usedVars b)
+    usedVars (BBinary _ a b) = usedVars a `Set.union` usedVars b
+    usedVars (RBinary _ a b) = usedVars a `Set.union` usedVars b
 
 instance AST Stmt where
-    usedVars (Seq a b) = Set.union (usedVars a) (usedVars b)
-    usedVars (Assign var a) = Set.union (Set.singleton var) (usedVars a)
+    usedVars (Seq a b) = usedVars a `Set.union` usedVars b
+    usedVars (Assign var a) = Set.singleton var `Set.union` usedVars a
     usedVars (If test a b) = Set.unions [usedVars test, usedVars a, usedVars b]
-    usedVars (While test a) = Set.union (usedVars test) (usedVars a)
+    usedVars (While test a) = usedVars test `Set.union` usedVars a
     usedVars (Skip) = Set.empty
