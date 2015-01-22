@@ -123,7 +123,10 @@ spec =
             `shouldBe` fromList [
                 ("s", Interval (Val 0) (Val 1))]
 
-    describe "interpretStmt" $
+    describe "interpretStmt" $ do
+        modifyMaxSuccess (*10) $ testStmtSemanticsProperties
+            (interpretState :: Stmt -> State Domain -> State Domain)
+
         context "programs from data/*.wl" $ do
             let expectated = Map.fromList [
                         ("convert.wl", fromList [

@@ -118,3 +118,15 @@ testBExprSemanticsProperties interpretBExpr =
                     Just False -> rejected
                     Just True -> liftBool $
                         singleAbstraction concreteInitial `leq` abstractResult
+
+testStmtSemanticsProperties ::
+    (State aState d, Lattice (aState d), Show (aState d)) =>
+    (Stmt -> aState d -> aState d) ->
+    Spec
+
+testStmtSemanticsProperties interpretState =
+    describe "Semantics properties" $
+        it "interpretation with bottom state is always bottom" $
+        property $
+            forAllShrink arbitrary shrink $ \stmt ->
+                interpretState stmt bottom `shouldBe` bottom

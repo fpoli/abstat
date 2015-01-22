@@ -53,7 +53,10 @@ spec =
             interpretBExpr (parseBExpression "(10<10) && ((5/0) < 10)") (top :: State Domain)
                 `shouldBe` bottom
 
-    describe "interpretStmt" $
+    describe "interpretStmt" $ do
+        modifyMaxSuccess (*10) $ testStmtSemanticsProperties
+            (interpretState :: Stmt -> State Domain -> State Domain)
+
         context "programs from data/*.wl" $ do
             let expectated = Map.fromList [
                         ("count.wl", fromList [

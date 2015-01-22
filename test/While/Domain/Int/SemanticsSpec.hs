@@ -85,6 +85,9 @@ spec =
                 `shouldBe` storeList [("x", Val 2)] (top :: State Domain)
 
     describe "interpretState" $ do
+        modifyMaxSuccess (*10) $ testStmtSemanticsProperties
+            (interpretState :: Stmt -> State Domain -> State Domain)
+
         context "skip" $ do
             it "interprets on empty state" $
                 interpretState Skip (empty :: State Domain)
