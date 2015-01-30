@@ -13,3 +13,5 @@ cabal.config
 *.prof
 *.hp
 *.aux
+.hpc/
+*.tix
