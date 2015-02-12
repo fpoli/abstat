@@ -74,7 +74,7 @@ test-suite spec
   type:                exitcode-stdio-1.0
   main-is:             Spec.hs
   ghc-options:         -Wall -fno-warn-unused-do-bind -fwarn-tabs -ferror-spans
-                       -O -threaded -with-rtsopts=-N -fno-warn-orphans -fhpc
+                       -O -threaded -with-rtsopts=-N -fno-warn-orphans
   hs-source-dirs:      src, test
   build-depends:       hspec,
                        QuickCheck>=2.7.6,
